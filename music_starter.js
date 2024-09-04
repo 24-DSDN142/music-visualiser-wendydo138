@@ -1,43 +1,58 @@
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
+let imgArray = []
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  background(20)
-  textFont('Verdana'); // please use CSS safe fonts
-  rectMode(CENTER)
-  textSize(24);
+  let firstRun = true;
+  if (firstRun) {
+    rectMode(CENTER);
+    imgArray.push(loadImage('1.png'));
+    imgArray.push(loadImage('2.png'));
+    imgArray.push(loadImage('3.png'));
+    imgArray.push(loadImage('4.png'));
+    imgArray.push(loadImage('5.png'));
+    imgArray.push(loadImage('6.png'));
+    firstRun = false
+  }
   
-   let bar_spacing = height / 10;
-   let bar_height = width / 12;
-   let bar_pos_x = width / 2;
- 
+  background(255);
+  scale(0.15);
+  // counter
+  if (counter <= 60) {
+    image(imgArray[0], 0, map(counter, 0, 100, 600 / 0.15, 0));
+  } else {
+    image(imgArray[0], 0, map(60, 0, 100, 600 / 0.15, 0));
+  }
 
-   // vocal bar is red
-   fill(200, 0, 0);
-   rect(bar_pos_x, height / 2 + 1 * bar_spacing, 4 * vocal, bar_height);
-   fill(0);
-   text("vocals", bar_pos_x, height / 2 + 1 * bar_spacing + 8);
- 
-   // drum bar is green
-   fill(0, 200, 0);
-   rect(bar_pos_x, height / 2 + 2 * bar_spacing, 4 * drum, bar_height);
-   fill(0);
-   text("drums", bar_pos_x, height / 2 + 2 * bar_spacing + 8);
- 
-   // bass bar is blue
-   fill(50, 50, 240);
-   rect(bar_pos_x, height / 2 + 3 * bar_spacing, 4 * bass, bar_height);
-   fill(0);
-   text("bass", bar_pos_x, height / 2 + 3 * bar_spacing + 8);
- 
-   // other bar is white
-   fill(200, 200, 200);
-   rect(bar_pos_x, height / 2 + 4 * bar_spacing, 4 * other, bar_height);
-   fill(0);
-   text("other", bar_pos_x, height / 2 + 4 * bar_spacing + 8);
-   fill(255, 255, 0);
- 
-   // display "words"
-   textAlign(CENTER);
-   textSize(vocal);
-   text(words, width/2, height/3);
+  if (60 < counter && counter <= 120) {
+    image(imgArray[1], 120 / 0.15, map(counter, 61, 150, 600 / 0.15, 0));
+  } else if (60 < counter) {
+    image(imgArray[1], 120 / 0.15, map(120, 61, 150, 600 / 0.15, 0));
+  }
+
+  if (120 < counter && counter <= 167) {
+    image(imgArray[2], 240 / 0.15, map(counter, 121, 180, 600 / 0.15, 0));
+  } else if (120 < counter) {
+    image(imgArray[2], 240 / 0.15, map(167, 121, 180, 600 / 0.15, 0));
+  }
+
+  if (167 < counter && counter <= 215) {
+    image(imgArray[3], 345 / 0.15, map(counter, 168, 240, 600 / 0.15, 0));
+  } else if (171 < counter) {
+    image(imgArray[3], 345 / 0.15, map(215, 168, 240, 600 / 0.15, 0));
+  }
+
+  if (215 < counter && counter <= 266) {
+    image(imgArray[4], 470 / 0.15, map(counter, 216, 300, 600 / 0.15, 0));
+  } else if (217 < counter) {
+    image(imgArray[4], 470 / 0.15, map(266, 216, 300, 600 / 0.15, 0));
+  }
+  scale(1.5);
+
+  // bass
+  if (267 < counter) {
+    let bassMap = map(bass, 0, 100, 0.8, 2.5);
+    scale(bassMap);
+    image(imgArray[5], (2000 - 450 * bassMap) / 1.5 / bassMap, 2200 / 1.5 / bassMap, 900 / 1.5, 900 / 1.5, 0, 0);
+  }
+  
 }
