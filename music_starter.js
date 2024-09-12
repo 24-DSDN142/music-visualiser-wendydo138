@@ -8,21 +8,6 @@ let firstRun = true;
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
   // preload();
   loadImages();
-
-  // This part was moved to the 3rd scene
-  // // 1st scene
-  // if (counter < (transitionToNextScreen - 30)) {
-  //   background(0);
-  //   scale(0.7);
-  //   drawEyes(counter);
-
-  //   if (300 < counter) {
-  //     background(255, 204, 255);
-  //     drawCircles(bass, other);
-  //     drawEyes(counter);
-  //   }
-  // }
-
   if (counter < 2186) { // 1st scene
     background(255, 204, 255);
     drawHeartBackground(drum);
@@ -73,23 +58,11 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
       if (300 < counterMap) {
         background(255, 204, 255);
         drawCircles(bass, other);
-        // drawEyes(counter);
+        drawEyes(counter);
       }
     }
   }
 }
-
-// function add_to_history(history, d) {
-//   history.push(d);
-//   if(history.length >= (width-1)/4) {
-//     history.shift();
-//   }
-// }
-
-// This part was removed since i couldn't find a way to import new font
-// function preload() {
-//   font = loadFont('/assets/Roboto-Regular.otf');
-// }
 
 function loadImages() { // load initial images
   if (firstRun) {
